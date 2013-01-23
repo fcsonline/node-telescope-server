@@ -11,6 +11,7 @@ program
 .option('-tt, --telescope-type <type>', 'telescope type [' + availableTelescopes + ']', String, 'dummy')
 .option('-td, --telescope-device <path>', 'system path to telescope device', String, '')
 .option('-cd, --camera-device <path>', 'system path to camera device', String, '')
+.option('-c, --config <path>', 'configuration file path to setup several servers', String, '')
 .parse(process.argv);
 
 var Server = require('./servers/' + program.type);
