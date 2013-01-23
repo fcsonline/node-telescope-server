@@ -23,6 +23,5 @@ var telescope = new Telescope();
 server.listen(program);
 
 server.on('move', function (position) {
-  console.log("Moving to: " + position);
   telescope.move(position);
 });
