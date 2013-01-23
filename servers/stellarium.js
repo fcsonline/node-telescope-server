@@ -55,7 +55,9 @@ function Server() {
           + current_position.y * current_position.y
           + current_position.z * current_position.z;
 
-        console.log("   H:", h);
+        if (program.debug) {
+          console.log("   H:", h);
+        }
 
         if (h > 0.0) {
           h = 1.0 / Math.sqrt(h);
@@ -68,15 +70,19 @@ function Server() {
           current_position.z = desired_position.z;
         }
 
-        console.log("CP-X:", current_position.x);
-        console.log("CP-Y:", current_position.y);
-        console.log("CP-Z:", current_position.z);
+        if (program.debug) {
+          console.log("CP-X:", current_position.x);
+          console.log("CP-Y:", current_position.y);
+          console.log("CP-Z:", current_position.z);
+        }
 
         ra  = Math.atan2(current_position.y, current_position.x);
         dec = Math.atan2(current_position.z, Math.sqrt(current_position.x * current_position.x + current_position.y * current_position.y));
 
-        console.log(" RA :", ra);
-        console.log(" DEC:", dec);
+        if (program.debug) {
+          console.log(" RA :", ra);
+          console.log(" DEC:", dec);
+        }
 
         current_position.ra_int = Math.floor(0.5 + ra * (0x80000000 / Math.PI));
         current_position.dec_int = Math.floor(0.5 + dec * (0x80000000 / Math.PI));
@@ -99,7 +105,9 @@ function Server() {
         obuffer.writeUInt32LE(current_position.dec_int, 16);
         obuffer.writeUInt32LE(0, 20);
 
-        // console.log('Output: ', obuffer);
+        if (program.debug) {
+          console.log('Output: ', obuffer);
+        }
 
         socket.write(obuffer);
       }
@@ -114,11 +122,11 @@ function Server() {
 
           , ra
           , dec
-          , cdec
+          , cdec;
 
-          , position;
-
-        // console.log('Input: ', ibuffer);
+        if (program.debug) {
+          console.log('Input: ', ibuffer);
+        }
 
         length  = ibuffer.readUInt16LE(0);
         type    = ibuffer.readUInt16LE(2);

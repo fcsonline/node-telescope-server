@@ -6,6 +6,7 @@ var availableTelescopes = utils.getAvailableTelescopes().join('|');
 
 program
 .version('0.0.1')
+.option('-d, --debug', 'enables the debug mode', Boolean, false)
 .option('-t, --type <type>', 'server type [' + availableServers + ']', String, 'stellarium')
 .option('-p, --port <port>', 'listening port', Number, 5000)
 .option('-tt, --telescope-type <type>', 'telescope type [' + availableTelescopes + ']', String, 'dummy')
