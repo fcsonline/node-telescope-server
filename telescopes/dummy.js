@@ -6,7 +6,7 @@ var utils = require('../utils');
 
 function Telescope() {
   this.move = function (position) {
-    console.log("Moving telescope to: ", position);
+    console.log("Moving dummy telescope to: ", position);
   };
 }
 
