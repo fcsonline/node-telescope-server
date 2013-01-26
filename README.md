@@ -28,23 +28,23 @@
       -c, --config <path>             configuration file path to setup several servers
 
 
-## Setup your own remote server with a connected telescope
+## Getting started
 
-*** A dummy example ***
+**A dummy example**
 
     $ rts
     Remote stellarium control server running at port 5000 to a dummy telescope
 
 This command starts a stellarium control server listenning at port `5000` connected to a dummy telescope sending commands to `/dev/null`
 
-*** Real Nexstar example ***
+**Real Nexstar example (Celestron telescopes)**
 
     $ rts -s stellarium -p 5050 -tt nexstar -td /dev/ttyS00
     Remote stellarium control server running at port 5050 to a dummy telescope
 
-This command starts a stellarium control server listenning at port `5050` connected to a [Nexstar](https://github.com/visionmedia/express-resource "Nexstar Protocol") telescope sending commands to `/dev/ttyS00` device
+This command starts a stellarium control server listenning at port `5050` connected to a [Nexstar](http://www.nexstarsite.com/ "Nexstar Protocol") telescope sending commands to `/dev/ttyS00` device
 
-*** Multiple servers ***
+**Multiple servers**
 
     $ rts -c config.json
     Telescope Dummy: Remote dummy control server running at port 4000 to a dummy telescope
@@ -85,3 +85,7 @@ An example of config file:
   }
 ]
 ```
+
+## Setup your own homemade planetarimu
+
+![](http://www.stellarium.org/img/screenshots/0.10-orion-nebula.jpg)
