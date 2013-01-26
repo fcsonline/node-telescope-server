@@ -9,7 +9,7 @@ var availableTelescopes = utils.getAvailableTelescopes().join('|');
 program
 .version('0.0.1')
 .option('-d, --debug', 'enables the debug mode', Boolean, false)
-.option('-t, --type <type>', 'server type [' + availableServers + ']', String, 'stellarium')
+.option('-s, --server <type>', 'server type [' + availableServers + ']', String, 'stellarium')
 .option('-p, --port <port>', 'listening port', Number, 5000)
 .option('-tt, --telescope-type <type>', 'telescope type [' + availableTelescopes + ']', String, 'dummy')
 .option('-td, --telescope-device <path>', 'system path to telescope device', String, '')
@@ -36,7 +36,7 @@ if (!program.config) {
   // Single server by program arguments
 
   createServer({
-    type: program.type
+    type: program.server
   , port: program.port
   , telescopeType: program.telescopeType
   , telescopeDevice: program.telescopeDevice
@@ -55,7 +55,7 @@ if (!program.config) {
     config.forEach(function (item) {
       var params = {
         name: item.name
-      , type: item.type
+      , type: item.server
       , port: item.port
       , telescopeType: item.telescopeType || item['telescope-type']
       , telescopeDevice: item.telescopeDevice || item['telescope-device']
