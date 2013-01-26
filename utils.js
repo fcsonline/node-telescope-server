@@ -78,8 +78,40 @@ function getAvailableServers() {
   });
 }
 
+/**
+ * Returns a welcome message
+ *
+ * @param {params} params server and telescope arguments
+ * @return {String}
+ */
+function welcome(params) {
+
+  return  (params.name ? '\x1b[34m' + params.name + '\x1b[0m: ' : '') +
+          'Remote \x1b[36m' + params.type + '\x1b[0m control server ' +
+          'running at port \x1b[36m' + params.port + '\x1b[0m ' +
+          'to a \x1b[33m' + params.telescopeType + '\x1b[0m telescope';
+
+}
+
+/**
+ * Returns a disabled message
+ *
+ * @param {params} params server and telescope arguments
+ * @return {String}
+ */
+function disabled(params) {
+
+  return  '\x1b[30mDisabled remote ' + params.type + ' control server ' +
+          'running at port ' + params.port + ' ' +
+          'to a ' + params.telescopeType + ' telescope';
+
+}
+
 module.exports = {
   printRaDec: printRaDec
 , getAvailableTelescopes: getAvailableTelescopes
 , getAvailableServers: getAvailableServers
+
+, welcome: welcome
+, disabled: disabled
 };

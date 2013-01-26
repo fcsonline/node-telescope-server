@@ -5,8 +5,7 @@ var microtime = require('microtime');
 var utils = require('../utils');
 
 function Server() {
-  this.type = 'stellarium';
-  this.listen = function (program) {
+  this.listen = function (params) {
 
     var self = this;
 
@@ -55,7 +54,7 @@ function Server() {
           + current_position.y * current_position.y
           + current_position.z * current_position.z;
 
-        if (program.debug) {
+        if (params.debug) {
           console.log("   H:", h);
         }
 
@@ -70,7 +69,7 @@ function Server() {
           current_position.z = desired_position.z;
         }
 
-        if (program.debug) {
+        if (params.debug) {
           console.log("CP-X:", current_position.x);
           console.log("CP-Y:", current_position.y);
           console.log("CP-Z:", current_position.z);
@@ -79,7 +78,7 @@ function Server() {
         ra  = Math.atan2(current_position.y, current_position.x);
         dec = Math.atan2(current_position.z, Math.sqrt(current_position.x * current_position.x + current_position.y * current_position.y));
 
-        if (program.debug) {
+        if (params.debug) {
           console.log(" RA :", ra);
           console.log(" DEC:", dec);
         }
@@ -105,7 +104,7 @@ function Server() {
         obuffer.writeUInt32LE(current_position.dec_int, 16);
         obuffer.writeUInt32LE(0, 20);
 
-        if (program.debug) {
+        if (params.debug) {
           console.log('Output: ', obuffer);
         }
 
@@ -124,7 +123,7 @@ function Server() {
           , dec
           , cdec;
 
-        if (program.debug) {
+        if (params.debug) {
           console.log('Input: ', ibuffer);
         }
 
@@ -178,9 +177,9 @@ function Server() {
         writePosition();
       }, 1000);
 
-    }).listen(program.port);
+    }).listen(params.port);
 
-    console.log("Remote control telescope server running at port " + program.port + "\n");
+    console.log(utils.welcome(params));
   };
 }
 

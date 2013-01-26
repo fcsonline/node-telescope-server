@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Telescope Dummy"
+  , "type": "dummy"
+  , "port": 4000
+  , "telescope-device": "/dev/null"
+  , "telescope-type": "dummy"
+  },
+  {
+    "name": "Telescope Stellarium Dummy"
+  , "type": "stellarium"
+  , "port": 4001
+  , "telescope-device": "/dev/random"
+  , "telescope-type": "dummy"
+
+  , "enabled": true
+  },
+  {
+    "name": "Telescope Nextar"
+  , "type": "web"
+  , "port": 4002
+  , "telescope-device": "/dev/ttyS00"
+  , "telescope-type": "nextar"
+  , "camera-device": "/dev/null"
+
+  , "enabled": false
+  }
+]

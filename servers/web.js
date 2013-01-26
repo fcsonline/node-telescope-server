@@ -5,9 +5,8 @@ var microtime = require('microtime');
 var utils = require('../utils');
 
 function Server() {
-  this.type = 'web';
-  this.listen = function (program) {
-
+  this.listen = function (params) {
+    console.log(utils.welcome(params));
   };
 }
 
