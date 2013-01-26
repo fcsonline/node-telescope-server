@@ -64,7 +64,7 @@ function printRaDec(position) {
 function getAvailableTelescopes() {
   return fs.readdirSync('./telescopes/').map(function (item) {
     return item.slice(0, -3);
-  });
+  }).sort();
 }
 
 /**
@@ -75,7 +75,7 @@ function getAvailableTelescopes() {
 function getAvailableServers() {
   return fs.readdirSync('./servers/').map(function (item) {
     return item.slice(0, -3);
-  });
+  }).sort();
 }
 
 /**
