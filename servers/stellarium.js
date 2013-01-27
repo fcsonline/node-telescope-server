@@ -191,7 +191,7 @@ function Server(params) {
         }
 
         writePosition();
-      }, 1000);
+      }, 500);
 
     }).listen(params.port);
 
