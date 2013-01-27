@@ -4,8 +4,8 @@ var net = require('net');
 var microtime = require('microtime');
 var utils = require('../utils');
 
-function Server() {
-  this.listen = function (params) {
+function Server(params) {
+  this.listen = function () {
 
     var self = this;
 
@@ -168,12 +168,18 @@ function Server() {
       });
 
       socket.on('end', function () {
-        console.log("Connection to client closed!");
+        if (!params.quiet) {
+          console.log("Connection to client closed!");
+        }
+
         clearInterval(interval);
       });
 
       interval = setInterval(function () {
-        console.log("Sending position: " + utils.printRaDec(current_position));
+        if (!params.quiet) {
+          console.log("Sending position: " + utils.printRaDec(current_position));
+        }
+
         writePosition();
       }, 1000);
 

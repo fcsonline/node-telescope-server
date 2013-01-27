@@ -4,9 +4,11 @@ var http = require('http');
 var microtime = require('microtime');
 var utils = require('../utils');
 
-function Telescope() {
+function Telescope(params) {
   this.move = function (position) {
-    console.log("Moving LX200 telescope to: ", position);
+    if (!params.quiet) {
+      console.log("Moving LX200 telescope to: ", position);
+    }
   };
 }
 

@@ -19,7 +19,8 @@
 
       -h, --help                     output usage information
       -V, --version                  output the version number
-      -d, --debug                    enables the verbose mode
+      -q, --quiet                    enables the quiet mode
+      -d, --debug                    enables the debug mode
       -s, --server <type>            server type [dummy|stellarium|web]
       -p, --port <port>              listening port
       -t, --telescope-type <type>    telescope type [dummy|lx200|nexstar|rts2]

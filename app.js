@@ -8,6 +8,7 @@ var availableTelescopes = utils.getAvailableTelescopes().join('|');
 
 program
 .version('0.0.1')
+.option('-q, --quiet', 'enables the quiet mode', Boolean, false)
 .option('-d, --debug', 'enables the debug mode', Boolean, false)
 .option('-s, --server <type>', 'server type [' + availableServers + ']', String, 'stellarium')
 .option('-p, --port <port>', 'listening port', Number, 5000)
@@ -21,14 +22,14 @@ function createServer(params) {
 
   var Server = require('./servers/' + params.type)
     , Telescope = require('./telescopes/' + params.telescopeType)
-    , server = new Server()
-    , telescope = new Telescope();
+    , server = new Server(params)
+    , telescope = new Telescope(params);
 
   server.on('move', function (position) {
     telescope.move(position);
   });
 
-  server.listen(params);
+  server.listen();
 }
 
 if (!program.config) {
@@ -42,6 +43,7 @@ if (!program.config) {
   , telescopeDevice: program.telescopeDevice
   , cameraDevice: program.cameraDevice
   , debug: program.debug
+  , quiet: program.quiet
   });
 
 } else {
@@ -61,6 +63,7 @@ if (!program.config) {
       , telescopeDevice: item.telescopeDevice || item['telescope-device']
       , cameraDevice: item.cameraDevice || item['camera-device']
       , debug: program.debug || item.debug
+      , quiet: program.quiet || item.quiet
       };
 
       // Ignore non enabled servers, by default it is enabled

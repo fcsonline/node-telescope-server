@@ -4,8 +4,8 @@ var http = require('http');
 var microtime = require('microtime');
 var utils = require('../utils');
 
-function Server() {
-  this.listen = function (params) {
+function Server(params) {
+  this.listen = function () {
     console.log(utils.welcome(params));
   };
 }
