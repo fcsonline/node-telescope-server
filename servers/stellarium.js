@@ -95,7 +95,7 @@ function Server(params) {
           console.log(" DEC:", dec);
         }
 
-        current_position.ra_int = Math.floor(0.5 + ra * (0x80000000 / Math.PI));
+        current_position.ra_int = Math.abs(Math.floor(0.5 + ra * (0x80000000 / Math.PI)));
         current_position.dec_int = Math.floor(0.5 + dec * (0x80000000 / Math.PI));
 
         if (params.debug) {
@@ -118,7 +118,7 @@ function Server(params) {
         obuffer.writeUInt8(time & 0xFF, 11); time = rshift(time, 8);
 
         obuffer.writeUInt32LE(current_position.ra_int, 12);
-        obuffer.writeUInt32LE(current_position.dec_int, 16);
+        obuffer.writeInt32LE(current_position.dec_int, 16);
         obuffer.writeUInt32LE(0, 20);
 
         if (params.debug) {
