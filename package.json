@@ -2,7 +2,7 @@
   "author": "Ferran Basora <fcsonline@gmail.com>",
   "name": "node-telescope-server",
   "description": "A remote control server for telescopes.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/fcsonline/node-telescope-server",
   "repository": {
     "type": "git",
@@ -13,8 +13,8 @@
     , "microtime": ">= 0.3.1"
   },
   "preferGlobal": "true",
-  "main": "index.js",
-  "bin": { "nts": "index.js" },
+  "main": "index",
+  "bin": { "nts": "./bin/nts" },
   "engines": {
     "node": "*"
   }
