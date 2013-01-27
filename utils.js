@@ -2,6 +2,18 @@
 var fs = require('fs');
 
 /**
+ * Returns a padded formatted number
+ *
+ * @param {Number} number
+ * @param {Number} size
+ * @return {String}
+ */
+function pad(num, size) {
+  var s = "000000000" + num;
+  return s.substr(s.length - size);
+}
+
+/**
  * Returns the formatted position coordinates
  *
  * @param {Object} position
@@ -44,14 +56,14 @@ function printRaDec(position) {
   dec_s = d % 60; d = Math.floor (d/ 60);
   dec_m = d % 60; d = Math.floor(d / 60);
 
-  message  = "ra = " + h + 'h';
-  message += ra_m + 'm';
-  message += ra_s + '.';
-  message += ra_ms;
-  message += " dec = " + dec_sign + d + 'h';
-  message += dec_m + 'm';
-  message += dec_s + '.';
-  message += dec_ms;
+  message  = "ra = " + pad(h, 2) + 'h';
+  message += pad(ra_m, 2) + 'm';
+  message += pad(ra_s, 2) + '.';
+  message += pad(ra_ms, 4);
+  message += " dec = " + dec_sign + pad(d, 2) + 'h';
+  message += pad(dec_m, 2) + 'm';
+  message += pad(dec_s, 2) + '.';
+  message += pad(dec_ms, 3);
 
   return message;
 }
