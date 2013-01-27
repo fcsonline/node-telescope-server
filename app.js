@@ -11,9 +11,9 @@ program
 .option('-d, --debug', 'enables the debug mode', Boolean, false)
 .option('-s, --server <type>', 'server type [' + availableServers + ']', String, 'stellarium')
 .option('-p, --port <port>', 'listening port', Number, 5000)
-.option('-tt, --telescope-type <type>', 'telescope type [' + availableTelescopes + ']', String, 'dummy')
-.option('-td, --telescope-device <path>', 'system path to telescope device', String, '')
-.option('-cd, --camera-device <path>', 'system path to camera device', String, '')
+.option('-t, --telescope-type <type>', 'telescope type [' + availableTelescopes + ']', String, 'dummy')
+.option('-i, --telescope-device <path>', 'system path to telescope device', String, '')
+.option('-a, --camera-device <path>', 'system path to camera device', String, '')
 .option('-c, --config <path>', 'configuration file path to setup several servers', String, '')
 .parse(process.argv);
 

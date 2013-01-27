@@ -17,16 +17,15 @@
 
     Options:
 
-      -h, --help                      output usage information
-      -V, --version                   output the version number
-      -d, --debug                     enables the debug mode
-      -s, --server <type>               server type [dummy|stellarium|web]
-      -p, --port <port>               listening port
-      -tt, --telescope-type <type>    telescope type [dummy|lx200|nexstar]
-      -td, --telescope-device <path>  system path to telescope device
-      -cd, --camera-device <path>     system path to camera device
-      -c, --config <path>             configuration file path to setup several servers
-
+      -h, --help                     output usage information
+      -V, --version                  output the version number
+      -d, --debug                    enables the verbose mode
+      -s, --server <type>            server type [dummy|stellarium|web]
+      -p, --port <port>              listening port
+      -t, --telescope-type <type>    telescope type [dummy|lx200|nexstar|rts2]
+      -i, --telescope-device <path>  system path to telescope device
+      -a, --camera-device <path>     system path to camera device
+      -c, --config <path>            configuration file path to setup several servers
 
 ## Getting started
 
@@ -39,10 +38,10 @@ This command starts a stellarium control server listenning at port `5000` connec
 
 **Real Nexstar example (Celestron telescopes)**
 
-    $ nts -s stellarium -p 5050 -tt nexstar -td /dev/ttyS00
+    $ nts -s stellarium -p 5050 -t nexstar -d /dev/ttyS0
     Remote stellarium control server running at port 5050 to a dummy telescope
 
-This command starts a stellarium control server listenning at port `5050` connected to a [Nexstar](http://www.nexstarsite.com/ "Nexstar Protocol") telescope sending commands to `/dev/ttyS00` device
+This command starts a stellarium control server listenning at port `5050` connected to a [Nexstar](http://www.nexstarsite.com/ "Nexstar Protocol") telescope sending commands to `/dev/ttyS0` device
 
 **Multiple servers**
 
