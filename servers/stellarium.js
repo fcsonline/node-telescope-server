@@ -170,18 +170,11 @@ function Server(params) {
         , z: Math.sin(dec)
         };
 
-        current_position = {
-          time: time
-        , ra_int: ra_int
-        , dec_int: dec_int
-        };
-
         self.emit('move', {
           ra: ra_int
         , dec: dec_int
         });
 
-        //writePosition();
       });
 
       socket.on('end', function () {
