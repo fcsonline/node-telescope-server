@@ -107,6 +107,8 @@ First of all you should connect your RaspberryPi to a router with a Ethernet wir
 
     $ ssh 192.168.1.15
 
+![](http://www.heberger-image.fr/data/images/22328_Raspberry_Pi_dimensions.jpg)
+
 The first step is to install the nodejs and npm packages:
 
     root@raspberry $ sudo apt-get install nodejs npm
@@ -139,10 +141,14 @@ Then start a nts instance to control your telescope. You should specify `-t` and
 
 Now the Node Telescope Server (nts) is ready to receive instructions to move your telescope to the desired target.
 
-The next step is to connect this nts instance with the Stellarium software. Open Stellarium and press `Ctrl+0` or go to the telescopes window. Add a new telescope and choose the "External software or remote computer". Then choose a desired name for your telescope, for example "NodeJS-RaspberryPI". Then specify the ip assigned to the RaspberryPI and the port listening by nts instance, in my case 192.168.1.15 and 5000. Save the telescope configuration. The last step is to click on connect button and the status label should change to "Connected".
+The next step is to connect this nts instance with the Stellarium software. Open Stellarium and press `Ctrl+0` or go to the telescopes window. Add a new telescope and choose the "External software or remote computer". Then choose a desired name for your telescope, for example "NodeJS-RaspberryPI". Then specify the ip assigned to the RaspberryPI and the port listening by nts instance, in my case 192.168.1.15 and 5000. Save the telescope configuration.
+
+![](http://img5.imageshack.us/img5/6145/nodetelescopeserver0.png)
+
+The last step is to click on connect button and the status label should change to "Connected".
 
 Finally you have the Stellarium connected to your telescope! Choose the desired object and pres the `Ctrl+1` and realize that the telescope start pointing to the target.
 
-Enjoy it!
+![](http://img580.imageshack.us/img580/6936/nodetelescopeserver1.png)
 
-![](http://www.stellarium.org/img/screenshots/0.10-orion-nebula.jpg)
+Enjoy it!
