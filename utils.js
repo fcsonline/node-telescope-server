@@ -74,7 +74,7 @@ function printRaDec(position) {
  * @return {Array<String>}
  */
 function getAvailableTelescopes() {
-  return fs.readdirSync('./telescopes/').map(function (item) {
+  return fs.readdirSync('../telescopes/').map(function (item) {
     return item.slice(0, -3);
   }).sort();
 }
@@ -85,7 +85,7 @@ function getAvailableTelescopes() {
  * @return {Array<String>}
  */
 function getAvailableServers() {
-  return fs.readdirSync('./servers/').map(function (item) {
+  return fs.readdirSync('../servers/').map(function (item) {
     return item.slice(0, -3);
   }).sort();
 }
