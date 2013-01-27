@@ -7,7 +7,7 @@
 
 ## Installation
 
-    $ npm install node-telescope-server
+    $ npm install node-telescope-server -g
 
 ## Help
 
@@ -39,7 +39,7 @@ This command starts a stellarium control server listenning at port `5000` connec
 
 **Real Nexstar example (Celestron telescopes)**
 
-    $ nts -s stellarium -p 5050 -t nexstar -d /dev/ttyS0
+    $ nts -s stellarium -p 5050 -t nexstar -i /dev/ttyS0
     Remote stellarium control server running at port 5050 to a dummy telescope
 
 This command starts a stellarium control server listenning at port `5050` connected to a [Nexstar](http://www.nexstarsite.com/ "Nexstar Protocol") telescope sending commands to `/dev/ttyS0` device
@@ -77,7 +77,7 @@ An example of config file:
     "name": "Telescope Nextar"
   , "server": "web"
   , "port": 4002
-  , "telescope-device": "/dev/ttyS00"
+  , "telescope-device": "/dev/ttyS0"
   , "telescope-type": "nextar"
   , "camera-device": "/dev/null"
 
