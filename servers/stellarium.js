@@ -46,9 +46,21 @@ function Server(params) {
           , dec
           , dec_int;
 
+        if (params.debug) {
+          console.log("1CP-X:", current_position.x);
+          console.log("1CP-Y:", current_position.y);
+          console.log("1CP-Z:", current_position.z);
+        }
+
         current_position.x = 3 * current_position.x + desired_position.x;
         current_position.y = 3 * current_position.y + desired_position.y;
         current_position.z = 3 * current_position.z + desired_position.z;
+
+        if (params.debug) {
+          console.log("2CP-X:", current_position.x);
+          console.log("2CP-Y:", current_position.y);
+          console.log("2CP-Z:", current_position.z);
+        }
 
         h = current_position.x * current_position.x
           + current_position.y * current_position.y
@@ -85,6 +97,11 @@ function Server(params) {
 
         current_position.ra_int = Math.floor(0.5 + ra * (0x80000000 / Math.PI));
         current_position.dec_int = Math.floor(0.5 + dec * (0x80000000 / Math.PI));
+
+        if (params.debug) {
+          console.log(" RA-I :", current_position.ra_int);
+          console.log(" DEC-I:", current_position.dec_int);
+        }
 
         obuffer.writeUInt16LE(obuffer.length, 0);
         obuffer.writeUInt16LE(0, 2);
