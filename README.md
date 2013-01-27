@@ -25,7 +25,6 @@
       -p, --port <port>              listening port
       -t, --telescope-type <type>    telescope type [dummy|lx200|nexstar|rts2]
       -i, --telescope-device <path>  system path to telescope device
-      -a, --camera-device <path>     system path to camera device
       -c, --config <path>            configuration file path to setup several servers
 
 ## Getting started
@@ -87,5 +86,63 @@ An example of config file:
 ```
 
 ## Setup your own homemade planetarium
+
+**Overview**
+
+This is a small tutorial to connect [Stellarium](http://www.stellarium.org/ "Stellarium software") with a Celestron telescope, and control it remotly. The next diagram describes the
+
+    // TODO
+
+**Requirements**
+
+- RaspberryPi with [raspbian](http://www.raspbian.org/ "Debian distribution for your RaspberryPi") installed
+- A Ethernet wire or a [Wireless adaptor](http://www.raspberrypi-tutorials.co.uk/set-raspberry-pi-wireless-network/) for your Raspberry Pi
+- Telescope Celestron (Nexstar Protocol) with GoTo feature
+- USB to Serial port adaptor
+- A computer with [Stellarium](http://www.stellarium.org/ "Stellarium software") installed
+
+**Steps**
+
+First of all you should connect your RaspberryPi to a router with a Ethernet wire. Also, you can connect the Raspberry with one wireless adaptor but that is outside the scope of this tutorial. Then connect by SSH.
+
+    $ ssh 192.168.1.15
+
+The first step is to install the nodejs and npm packages:
+
+    root@raspberry $ sudo apt-get install nodejs npm
+
+Then install the node-telescope-server module in your Raspberry running:
+
+    root@raspberry $ sudo npm install node-telescope-server -g
+
+Then connect your USB to Serial port adaptor to one of your available ports in the Raspberry Pi and connect the other side to the telescope. Run the next `lsusb` command to identify the USB device to be initialized:
+
+    root@raspberry $ lsusb
+    ...
+    Bus 001 Device 002: ID 4358:2523
+    ...
+    root@raspberry $ sudo modprobe usbserial vendor=0x4358 product=0x2523
+
+Run `dmesg` command and you shall see lines like these:
+
+    root@raspberry $ dmesg
+    usbserial_generic 1-1:1.0: generic converter detected
+    usb 1-1: generic converter now attached to ttyUSB0
+    usbcore: registered new interface driver usbserial_generic
+
+Identify the device uid assigned by the kernel to the serial port, aka `ttyUSB0`.
+
+Then start a nts instance to control your telescope. You should specify `-t` and `-i` arguments with your telescope type and file to the device file descriptor.
+
+    root@raspberry $ nts -s stellarium -p 5000 -t nexstar -i /dev/ttyS0
+    Remote stellarium control server running at port 5000 to a nextar telescope
+
+Now the Node Telescope Server (nts) is ready to receive instructions to move your telescope to the desired target.
+
+The next step is to connect this nts instance with the Stellarium software. Open Stellarium and press `Ctrl+0` or go to the telescopes window. Add a new telescope and choose the "External software or remote computer". Then choose a desired name for your telescope, for example "NodeJS-RaspberryPI". Then specify the ip assigned to the RaspberryPI and the port listening by nts instance, in my case 192.168.1.15 and 5000. Save the telescope configuration. The last step is to click on connect button and the status label should change to "Connected".
+
+Finally you have the Stellarium connected to your telescope! Choose the desired object and pres the `Ctrl+1` and realize that the telescope start pointing to the target.
+
+Enjoy it!
 
 ![](http://www.stellarium.org/img/screenshots/0.10-orion-nebula.jpg)
