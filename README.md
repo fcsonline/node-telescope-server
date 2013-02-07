@@ -2,8 +2,9 @@
 
 ## Overview
 
-## Features
+// TODO: Add a reference to the URL in Stellarium web page
 
+## Features
 
 ## Installation
 
@@ -89,7 +90,7 @@ An example of config file:
 
 **Overview**
 
-This is a small tutorial to connect [Stellarium](http://www.stellarium.org/ "Stellarium software") with a Celestron telescope, and control it remotly. The next diagram describes the
+This is a small tutorial to connect [Stellarium](http://www.stellarium.org/ "Stellarium software") with a Celestron telescope, and control it remotly. The next diagram describes all the required elements to build your own homemade planetarium.
 
     // TODO
 
@@ -103,15 +104,32 @@ This is a small tutorial to connect [Stellarium](http://www.stellarium.org/ "Ste
 
 **Steps**
 
-First of all you should connect your RaspberryPi to a router with a Ethernet wire. Also, you can connect the Raspberry with one wireless adaptor but that is outside the scope of this tutorial. Then connect by SSH.
+First of all you should connect your RaspberryPi to a router with a Ethernet wire. As an alternative, you can connect the Raspberry with one wireless adaptor but that is outside the scope of this tutorial. Then connect by SSH.
 
     $ ssh 192.168.1.15
-
-![](http://www.heberger-image.fr/data/images/22328_Raspberry_Pi_dimensions.jpg)
 
 The first step is to install the nodejs and npm packages:
 
     root@raspberry $ sudo apt-get install nodejs npm
+
+First verify that the current nodejs and npm packages have compatible versions:
+
+    root@raspberry $ node -v
+    0.8.9
+    root@raspberry $ npm -v
+    1.1.4
+
+If the previous commands have returned older versions you should install node and npm manualy:
+
+    root@raspberry $ wget http://www.nodejs.org/...
+    root@raspberry $ tar zxf node-0.8.9.tar.gz
+    root@raspberry $ cd node-0.8.9
+    root@raspberry $ ./configure && make
+    root@raspberry $ sudo make install
+    root@raspberry $ node -v
+    0.8.9
+    root@raspberry $ npm -v
+    1.1.4
 
 Then install the node-telescope-server module in your Raspberry running:
 
@@ -143,12 +161,20 @@ Now the Node Telescope Server (nts) is ready to receive instructions to move you
 
 The next step is to connect this nts instance with the Stellarium software. Open Stellarium and press `Ctrl+0` or go to the telescopes window. Add a new telescope and choose the "External software or remote computer". Then choose a desired name for your telescope, for example "NodeJS-RaspberryPI". Then specify the ip assigned to the RaspberryPI and the port listening by nts instance, in my case 192.168.1.15 and 5000. Save the telescope configuration.
 
-![](http://img5.imageshack.us/img5/6145/nodetelescopeserver0.png)
-
 The last step is to click on connect button and the status label should change to "Connected".
 
-Finally you have the Stellarium connected to your telescope! Choose the desired object and pres the `Ctrl+1` and realize that the telescope start pointing to the target.
-
-![](http://img580.imageshack.us/img580/6936/nodetelescopeserver1.png)
+Finally you have the Stellarium connected to your telescope! Choose the desired object and pres the `Ctrl+1` and realize that the telescope start pointing to the target. :-)
 
 Enjoy it!
+
+![](http://www.heberger-image.fr/data/images/22328_Raspberry_Pi_dimensions.jpg)
+![](http://img5.imageshack.us/img5/6145/nodetelescopeserver0.png)
+![](http://img580.imageshack.us/img580/6936/nodetelescopeserver1.png)
+
+
+## License
+
+Check the `LICENSE` file
+
+
+
