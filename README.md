@@ -2,9 +2,20 @@
 
 ## Overview
 
-// TODO: Add a reference to the URL in Stellarium web page
+node-telescope-server is server to control telescopes remotely. Actually it is a port of C++ [source](http://www.stellarium.org) to NodeJS. With an easy of set of commands you will be able to connect your computer to a telescope and target it to the desired stellar object.
 
 ## Features
+
+* Interface control for Stellarium software
+* Interface control thought a HTTP REST API
+* Compatible with NexStar telescopes
+* Compatible running with multiple telescopes at same time
+
+## Future features
+
+* Interface control thought WebSockets
+* Remote camera capabilities
+* Compatibility with LX200 and RTS2 telescopes
 
 ## Installation
 
@@ -110,42 +121,42 @@ First of all you should connect your RaspberryPi to a router with a Ethernet wir
 
 The first step is to install the nodejs and npm packages:
 
-    root@raspberry $ sudo apt-get install nodejs npm
+    pi@raspberry $ sudo apt-get install nodejs npm
 
 First verify that the current nodejs and npm packages have compatible versions:
 
-    root@raspberry $ node -v
+    pi@raspberry $ node -v
     0.8.9
-    root@raspberry $ npm -v
+    pi@raspberry $ npm -v
     1.1.4
 
 If the previous commands have returned older versions you should install node and npm manualy:
 
-    root@raspberry $ wget http://www.nodejs.org/...
-    root@raspberry $ tar zxf node-0.8.9.tar.gz
-    root@raspberry $ cd node-0.8.9
-    root@raspberry $ ./configure && make
-    root@raspberry $ sudo make install
-    root@raspberry $ node -v
+    pi@raspberry $ wget http://www.nodejs.org/...
+    pi@raspberry $ tar zxf node-0.8.9.tar.gz
+    pi@raspberry $ cd node-0.8.9
+    pi@raspberry $ ./configure && make
+    pi@raspberry $ sudo make install
+    pi@raspberry $ node -v
     0.8.9
-    root@raspberry $ npm -v
+    pi@raspberry $ npm -v
     1.1.4
 
 Then install the node-telescope-server module in your Raspberry running:
 
-    root@raspberry $ sudo npm install node-telescope-server -g
+    pi@raspberry $ sudo npm install node-telescope-server -g
 
 Then connect your USB to Serial port adaptor to one of your available ports in the Raspberry Pi and connect the other side to the telescope. Run the next `lsusb` command to identify the USB device to be initialized:
 
-    root@raspberry $ lsusb
+    pi@raspberry $ lsusb
     ...
     Bus 001 Device 002: ID 4358:2523
     ...
-    root@raspberry $ sudo modprobe usbserial vendor=0x4358 product=0x2523
+    pi@raspberry $ sudo modprobe usbserial vendor=0x4358 product=0x2523
 
 Run `dmesg` command and you shall see lines like these:
 
-    root@raspberry $ dmesg
+    pi@raspberry $ dmesg
     usbserial_generic 1-1:1.0: generic converter detected
     usb 1-1: generic converter now attached to ttyUSB0
     usbcore: registered new interface driver usbserial_generic
@@ -154,7 +165,7 @@ Identify the device uid assigned by the kernel to the serial port, aka `ttyUSB0`
 
 Then start a nts instance to control your telescope. You should specify `-t` and `-i` arguments with your telescope type and file to the device file descriptor.
 
-    root@raspberry $ nts -s stellarium -p 5000 -t nexstar -i /dev/ttyS0
+    pi@raspberry $ nts -s stellarium -p 5000 -t nexstar -i /dev/ttyS0
     Remote stellarium control server running at port 5000 to a nextar telescope
 
 Now the Node Telescope Server (nts) is ready to receive instructions to move your telescope to the desired target.
