@@ -2,7 +2,7 @@
 
 ## Overview
 
-node-telescope-server is server to control telescopes remotely. Actually it is a port of C++ [source](http://www.stellarium.org) to NodeJS. With an easy of set of commands you will be able to connect your computer to a telescope and target it to the desired stellar object.
+node-telescope-server is server to control telescopes remotely. Actually it is a port of C++ [source](http://www.stellarium.org/wiki/index.php/Telescope_Control_plug-in) to NodeJS. With an easy of set of commands you will be able to connect your computer to a telescope and target it to the desired stellar object.
 
 ## Features
 
