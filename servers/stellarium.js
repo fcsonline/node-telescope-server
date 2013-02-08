@@ -125,7 +125,9 @@ function Server(params) {
           console.log('Output: ', obuffer);
         }
 
-        socket.write(obuffer);
+        if (socket.writable) {
+          socket.write(obuffer);
+        }
       }
 
       socket.on('data', function (raw) {
