@@ -103,7 +103,7 @@ An example of config file:
 
 This is a small tutorial to connect [Stellarium](http://www.stellarium.org/ "Stellarium software") with a Celestron telescope, and control it remotly. The next diagram describes all the required elements to build your own homemade planetarium.
 
-    // TODO
+![](https://www.lucidchart.com/documents/download/51156cc1-d020-4104-b035-73300a000fde)
 
 **Requirements**
 
@@ -177,11 +177,6 @@ The last step is to click on connect button and the status label should change t
 Finally you have the Stellarium connected to your telescope! Choose the desired object and pres the `Ctrl+1` and realize that the telescope start pointing to the target. :-)
 
 Enjoy it!
-
-![](http://www.heberger-image.fr/data/images/22328_Raspberry_Pi_dimensions.jpg)
-![](http://img5.imageshack.us/img5/6145/nodetelescopeserver0.png)
-![](http://img580.imageshack.us/img580/6936/nodetelescopeserver1.png)
-
 
 ## License
 
