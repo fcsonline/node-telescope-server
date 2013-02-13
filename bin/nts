@@ -10,7 +10,7 @@ var availableServers = utils.getAvailableServers().join('|');
 var availableTelescopes = utils.getAvailableTelescopes().join('|');
 
 program
-.version('0.0.1')
+.version('0.1.0')
 .option('-q, --quiet', 'enables the quiet mode', Boolean, false)
 .option('-d, --debug', 'enables the debug mode', Boolean, false)
 .option('-s, --server <type>', 'server type [' + availableServers + ']', String, 'stellarium')
