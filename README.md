@@ -2,7 +2,7 @@
 
 ## Overview
 
-node-telescope-server is server to control telescopes remotely. Actually it is a port of C++ [source](http://www.stellarium.org/wiki/index.php/Telescope_Control_plug-in) to NodeJS. With an easy of set of commands you will be able to connect your computer to a telescope and target it to the desired stellar object.
+node-telescope-server is a server to control telescopes remotely. Actually it is a port of C++ [source](http://www.stellarium.org/wiki/index.php/Telescope_Control_plug-in) to NodeJS. With an easy of set of commands you will be able to connect your computer to a telescope and target it to the desired stellar object.
 
 ## Features
 
@@ -142,7 +142,7 @@ If the previous commands have returned older versions you should install node an
     pi@raspberry $ npm -v
     1.1.4
 
-Then install the node-telescope-server module in your Raspberry running:
+Then install the `node-telescope-server` module in your Raspberry running:
 
     pi@raspberry $ sudo npm install node-telescope-server -g
 
@@ -170,7 +170,7 @@ Then start a nts instance to control your telescope. You should specify `-t` and
 
 Now the Node Telescope Server (nts) is ready to receive instructions to move your telescope to the desired target.
 
-The next step is to connect this nts instance with the Stellarium software. Open Stellarium and press `Ctrl+0` or go to the telescopes window. Add a new telescope and choose the "External software or remote computer". Then choose a desired name for your telescope, for example "NodeJS-RaspberryPI". Then specify the ip assigned to the RaspberryPI and the port listening by nts instance, in my case 192.168.1.15 and 5000. Save the telescope configuration.
+The next step is to connect this nts instance with the Stellarium software. Open Stellarium and press `Ctrl+0` or go to the telescopes window. Add a new telescope and choose the *External software or remote computer*. Then choose a desired name for your telescope, for example "NodeJS-RaspberryPI". Then specify the ip assigned to the RaspberryPI and the port listening by nts instance, in my case `192.168.1.15` and `5000`. Save the telescope configuration.
 
 The last step is to click on connect button and the status label should change to "Connected".
 
