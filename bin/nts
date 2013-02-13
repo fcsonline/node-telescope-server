@@ -33,6 +33,8 @@ function createServer(params) {
   });
 
   server.listen();
+
+  return server;
 }
 
 if (!program.config) {
