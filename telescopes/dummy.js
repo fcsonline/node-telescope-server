@@ -5,7 +5,7 @@ var microtime = require('microtime');
 var utils = require('../utils');
 
 function Telescope(params) {
-  this.move = function (position) {
+  this.goto = function (position) {
     if (!params.quiet) {
       console.log("Moving dummy telescope to: ", position);
     }

@@ -28,8 +28,14 @@ function createServer(params) {
     , server = new Server(params)
     , telescope = new Telescope(params);
 
-  server.on('move', function (position) {
-    telescope.move(position);
+  // Propagate the message comming from the server client to the telescope
+  server.on('goto', function (position) {
+    telescope.goto(position);
+  });
+
+  // Propagate the message comming from the telescope to the server client
+  telescope.on('track', function (position) {
+    server.track(position);
   });
 
   server.listen();

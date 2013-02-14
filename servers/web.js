@@ -5,6 +5,7 @@ var microtime = require('microtime');
 var utils = require('../utils');
 
 function Server(params) {
+
   var self = this;
 
   this.listen = function () {
@@ -21,7 +22,7 @@ function Server(params) {
         return;
       }
 
-      self.emit('move', {
+      self.emit('goto', {
         ra: ra
       , dec: dec
       });
@@ -30,6 +31,10 @@ function Server(params) {
     });
 
     app.listen(params.port);
+  };
+
+  this.track = function (position) {
+    // Process the message comming from the telescope to the server client
   };
 }
 
