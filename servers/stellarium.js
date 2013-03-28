@@ -3,6 +3,7 @@ var EventEmitter = require('events').EventEmitter;
 var net = require('net');
 var microtime = require('microtime');
 var utils = require('../utils');
+var ExponentialBuffer = require('../lib/exponential.buffers');
 
 function Server(params) {
 
@@ -83,7 +84,7 @@ function Server(params) {
   }
 
   this.read = function (raw) {
-    var ibuffer = new Buffer(raw)
+    var ibuffer = new ExponentialBuffer(raw)
       , length
       , type
       , time
@@ -100,17 +101,7 @@ function Server(params) {
 
     length  = ibuffer.readUInt16LE(0);
     type    = ibuffer.readUInt16LE(2);
-
-    // Why not? U_U time = ibuffer.readDoubleLE(4);
-    time    = lshift(ibuffer.readUInt8(4), 0) +
-              lshift(ibuffer.readUInt8(5), 8) +
-              lshift(ibuffer.readUInt8(6), 16) +
-              lshift(ibuffer.readUInt8(7), 24) +
-              lshift(ibuffer.readUInt8(8), 32) +
-              lshift(ibuffer.readUInt8(9), 40) +
-              lshift(ibuffer.readUInt8(10), 48) +
-              lshift(ibuffer.readUInt8(11), 56);
-
+    time    = ibuffer.readDoubleExponential(4);
     ra_int  = ibuffer.readUInt32LE(12);
     dec_int = ibuffer.readUInt32LE(16);
 
@@ -129,7 +120,7 @@ function Server(params) {
 
   this.write = function (current_position, desired_position) {
 
-    var obuffer = new Buffer(24)
+    var obuffer = new ExponentialBuffer(24)
       , time = microtime.now()
       , h
       , ra
@@ -196,18 +187,7 @@ function Server(params) {
 
     obuffer.writeUInt16LE(obuffer.length, 0);
     obuffer.writeUInt16LE(0, 2);
-
-    // Why not? U_U time = ibuffer.readDoubleLE(4);
-    obuffer.writeDoubleLE(time, 4);
-    obuffer.writeUInt8(time & 0xFF, 4); time = rshift(time, 8);
-    obuffer.writeUInt8(time & 0xFF, 5); time = rshift(time, 8);
-    obuffer.writeUInt8(time & 0xFF, 6); time = rshift(time, 8);
-    obuffer.writeUInt8(time & 0xFF, 7); time = rshift(time, 8);
-    obuffer.writeUInt8(time & 0xFF, 8); time = rshift(time, 8);
-    obuffer.writeUInt8(time & 0xFF, 9); time = rshift(time, 8);
-    obuffer.writeUInt8(time & 0xFF, 10); time = rshift(time, 8);
-    obuffer.writeUInt8(time & 0xFF, 11); time = rshift(time, 8);
-
+    obuffer.writeDoubleExponential(time, 4);
     obuffer.writeUInt32LE(current_position.ra_int, 12);
     obuffer.writeInt32LE(current_position.dec_int, 16);
     obuffer.writeUInt32LE(0, 20);
