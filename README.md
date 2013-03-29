@@ -103,7 +103,7 @@ An example of config file:
 
 This is a small tutorial to connect [Stellarium](http://www.stellarium.org/ "Stellarium software") with a Celestron telescope, and control it remotly. The next diagram describes all the required elements to build your own homemade planetarium.
 
-![](https://www.lucidchart.com/documents/download/51156cc1-d020-4104-b035-73300a000fde)
+![](http://img18.imageshack.us/img18/3122/90805307.png)
 
 **Requirements**
 
