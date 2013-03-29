@@ -187,6 +187,8 @@ Finally you have the Stellarium connected to your telescope! Choose the desired 
 
 Enjoy it!
 
+![](http://img33.imageshack.us/img33/1308/89503012.png)
+
 ## License
 
 Check the `LICENSE` file
