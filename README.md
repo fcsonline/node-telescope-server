@@ -60,7 +60,8 @@ This command starts a stellarium control server listenning at port `5050` connec
     $ nts -c config.json
     Telescope Dummy: Remote dummy control server running at port 4000 to a dummy telescope
     Telescope Stellarium Dummy: Remote stellarium control server running at port 4001 to a dummy telescope
-    Disabled remote web control server running at port 4002 to a nextar telescope
+    Telescope Nexstar: Remote stellarium control server running at port 5000 to a nexstar telescope
+    Disabled remote web control server running at port 5001 to a nextar telescope
 
 This command starts several servers defined in the `config.json` file.
 
@@ -85,11 +86,19 @@ An example of config file:
   , "enabled": true
   },
   {
-    "name": "Telescope Nextar"
-  , "server": "web"
-  , "port": 4002
+    "name": "Telescope Nexstar"
+  , "server": "stellarium"
+  , "port": 5000
   , "telescope-device": "/dev/ttyS0"
   , "telescope-type": "nextar"
+  , "camera-device": "/dev/null"
+  },
+  {
+    "name": "Telescope Lx2000"
+  , "server": "web"
+  , "port": 5001
+  , "telescope-device": "/dev/ttyS0"
+  , "telescope-type": "lx2000"
   , "camera-device": "/dev/null"
 
   , "enabled": false
