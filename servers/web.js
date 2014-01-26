@@ -13,6 +13,8 @@ function Server(params) {
 
     var app = express.createServer();
 
+    app.use(express.bodyParser());
+
     app.post('/api/position', function (req, res) {
       var ra = req.param('ra', null)
         , dec = req.param('dec', null);
