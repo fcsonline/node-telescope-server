@@ -8,7 +8,7 @@ var ExponentialBuffer = require('../lib/exponential.buffers');
 function Server(params) {
 
   var self = this;
-  var first_search = 0;
+  var first_search = false;
 
   this.listen = function () {
 
@@ -46,7 +46,7 @@ function Server(params) {
         , dec: command.dec_int
         });
  	
-	first_search = 1;
+	first_search = true;
 
       });
 
@@ -78,7 +78,7 @@ function Server(params) {
   };
 
   this.track = function (position) {
-	  // Nothing to Do
+    // Nothing to Do
   };
 
   function lshift(num, bits) {
@@ -183,7 +183,6 @@ function Server(params) {
       console.log(" DEC:", dec);
     }
 
-    //current_position.ra_int = Math.abs(Math.floor(0.5 + ra * (0x80000000 / Math.PI)));
     current_position.ra_int = (Math.floor(0.5 + ra * (0x80000000 / Math.PI)));
     if (current_position.ra_int < 1)
     {
