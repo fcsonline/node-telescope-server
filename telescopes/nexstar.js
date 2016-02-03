@@ -60,14 +60,18 @@ function Telescope(params) {
   this.process = function () {
     var command = this.queue.shift()
       , obuffer = new ExponentialBuffer(18);
-
+  
     console.log("Command: ", command);
+    
+    command.ra &= 0xFFFFFF00;
+    command.dec &= 0xFFFFFF00;
+    console.log("Modified Command: ", command);
 
     // WRITE: r<ra 8 bytes>,<dec 8 bytes>
     obuffer.write('r', 0);
-    obuffer.writeDoubleExponential(command.ra, 1);
+    obuffer.write8ByteStringFrom4ByteNumber(command.ra, 1);
     obuffer.write(',', 9);
-    obuffer.writeDoubleExponential(command.dec, 10);
+    obuffer.write8ByteStringFrom4ByteNumber(command.dec, 10);
 
     if (params.debug) {
       console.log('Nexstar output: ', obuffer);
