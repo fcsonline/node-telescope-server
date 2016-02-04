@@ -101,9 +101,9 @@ function Server(params) {
       , dec
       , cdec;
 
-      if (params.debug) {
-        console.log('Input from Stellarium: ', ibuffer);
-      }
+    if (params.debug) {
+      console.log('Input from Stellarium: ', ibuffer);
+    }
 
     length  = ibuffer.readUInt16LE(0);
     type    = ibuffer.readUInt16LE(2);
@@ -178,7 +178,7 @@ function Server(params) {
     ra  = Math.atan2(current_position.y, current_position.x);
     dec = Math.atan2(current_position.z, Math.sqrt(current_position.x * current_position.x + current_position.y * current_position.y));
 
-      if (params.debug) {
+    if (params.debug) {
       console.log(" RA :", ra);
       console.log(" DEC:", dec);
     }
@@ -186,7 +186,7 @@ function Server(params) {
     current_position.ra_int = (Math.floor(0.5 + ra * (0x80000000 / Math.PI)));
     if (current_position.ra_int < 1)
     {
-	    current_position.ra_int = 0xffffffff + current_position.ra_int + 0x1;
+      current_position.ra_int = 0xffffffff + current_position.ra_int + 0x1;
     }
     current_position.dec_int = Math.floor(0.5 + dec * (0x80000000 / Math.PI));
 
