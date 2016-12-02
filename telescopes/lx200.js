@@ -13,6 +13,9 @@ function Telescope(params) {
     }
   });
 
+  // Stream to telescope device
+  this.device = fs.createWriteStream(params.telescopeDevice, {'flags': 'a'});
+
   // Session closed
   this.device.on("end", function () {
     console.log("LX200 telescope disconected!");
