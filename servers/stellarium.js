@@ -8,6 +8,7 @@ var ExponentialBuffer = require('../lib/exponential.buffers');
 function Server(params) {
 
   var self = this;
+  var first_search = false;
 
   this.listen = function () {
 
@@ -44,6 +45,8 @@ function Server(params) {
           ra: command.ra_int
         , dec: command.dec_int
         });
+ 	
+	first_search = true;
 
       });
 
@@ -60,9 +63,12 @@ function Server(params) {
         if (!params.quiet) {
           console.log("Sending position: " + utils.printRaDec(current_position));
         }
-
+      
         if (socket.writable) {
-          socket.write(self.write(current_position, desired_position));
+          if (first_search)
+          {
+            socket.write(self.write(current_position, desired_position));
+          }
         }
       }, 500);
 
@@ -96,7 +102,7 @@ function Server(params) {
       , cdec;
 
     if (params.debug) {
-      console.log('Input: ', ibuffer);
+      console.log('Input from Stellarium: ', ibuffer);
     }
 
     length  = ibuffer.readUInt16LE(0);
@@ -177,7 +183,11 @@ function Server(params) {
       console.log(" DEC:", dec);
     }
 
-    current_position.ra_int = Math.abs(Math.floor(0.5 + ra * (0x80000000 / Math.PI)));
+    current_position.ra_int = (Math.floor(0.5 + ra * (0x80000000 / Math.PI)));
+    if (current_position.ra_int < 1)
+    {
+      current_position.ra_int = 0xffffffff + current_position.ra_int + 0x1;
+    }
     current_position.dec_int = Math.floor(0.5 + dec * (0x80000000 / Math.PI));
 
     if (params.debug) {
@@ -193,7 +203,7 @@ function Server(params) {
     obuffer.writeUInt32LE(0, 20);
 
     if (params.debug) {
-      console.log('Output: ', obuffer);
+      console.log('Output to Stellarium: ', obuffer);
     }
 
     return obuffer;
