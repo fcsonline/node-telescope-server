@@ -7,7 +7,7 @@ node-telescope-server is a server to control telescopes remotely. Actually it is
 ## Features
 
 * Interface control for Stellarium software
-* Interface control thought a HTTP REST API
+* Interface control through a HTTP REST API
 * Compatible with NexStar telescopes
 * Compatible running with multiple telescopes at same time
 
